@@ -11,19 +11,7 @@ When I'm reading a web page - whether it be a blog, Stack Overflow answer, artic
 Design:
 ===================
 
-Developed as a [chrome plugin](https://developer.chrome.com/extensions/getstarted).  It could work similarly to [poof](https://github.com/ahoskins/poof) which was designed by reading the source of [boom](https://github.com/holman/boom), a Ruby command line tool (hilarous similarly these are named).  Both of these work by storing a JSON file in the home directory of the filesystem - which is super easy to deal with, fast, lightweight.  It would store something like:
-
-        notes = [{
-            uri: "http://github.com/holman/boom",
-            notes: "a simple string or serialized markdown"
-          },
-          {
-            uri: "http://stackoverflow.com/259394",
-            notes: "omg the third answer is so good wowowow"
-          }
-        ]
-        
-It would be a really small javascript to load this in and display it.
+Developed as a [chrome extension](https://developer.chrome.com/extensions/getstarted).  Initially I thought it would make sense to just store data as JSON either on the filesystem/localstorage.  BUt after thinking about it more, I think it's better to use a Node server with a NoSQL DB (maybe MongoDB).  [User Authentication](https://developer.chrome.com/apps/app_identity) can be handler by Chrome using Google accounts, and then a [XHR](http://stackoverflow.com/questions/13222778/chrome-extension-data-connection-to-server) (with these credentials) can be sent to the Node server. 
 
 Ideas for displaying the notes in the browser:
 ============================
