@@ -11,7 +11,15 @@ When I'm reading a web page - whether it be a blog, Stack Overflow answer, artic
 Design:
 ===================
 
-Developed as a [chrome extension](https://developer.chrome.com/extensions/getstarted).  Initially I thought it would make sense to just store data as JSON either on the filesystem/localstorage.  BUt after thinking about it more, I think it's better to use a Node server with a NoSQL DB (maybe MongoDB).  [User Authentication](https://developer.chrome.com/apps/app_identity) can be handler by Chrome using Google accounts, and then a [XHR](http://stackoverflow.com/questions/13222778/chrome-extension-data-connection-to-server) (with these credentials) can be sent to the Node server. 
+Developed as a [chrome extension](https://developer.chrome.com/extensions/getstarted).
+
+Simple:
+--------
+Use the [Storage API's](https://developer.chrome.com/apps/app_storage) provided by Chrome.  Available offline, low development overhead, no server to deal with.
+
+Less Simple:
+------------
+There might not be any benefits to this.  This approach involves a Node server with something like MongoDB. [User Authentication](https://developer.chrome.com/apps/app_identity) can be handler by Chrome using Google accounts, and then a [XHR](http://stackoverflow.com/questions/13222778/chrome-extension-data-connection-to-server) (with these credentials) can be sent to the Node server.    
 
 Ideas for displaying the notes in the browser:
 ============================
