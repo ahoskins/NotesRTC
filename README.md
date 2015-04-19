@@ -8,6 +8,9 @@ Thought:
 
 When I'm reading a web page - whether it be a blog, Stack Overflow answer, article, essay, etc - often I have ideas or notes that I wish I could write down. Because then when I go back to this webpage, I can leverage my previous understanding/insight into whatever I'm reading.  
 
+**Edit:**
+Another thought.  If I'm linking a page to someone, it would be useful to be able to annotate it, then send the person the annotated version. The annoations would be right on the webpage: could be on text, or an invisible div outlining a diagram or something.  The goal is to help reduce the post-link-send conversation that often goes like this: "Wait, where does it say that?"..."Button of the page, second last paragraph"..."Oh I see. Hmm. Why do you think that's important though"...etc, etc.
+
 Design:
 ===================
 
