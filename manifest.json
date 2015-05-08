@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Chrome notes",
+  "version": "1.0",
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "commands": {
+    "new-note": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Comma"
+      },
+      "description": "add a new note to a webpage"
+    }
+  },
+
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+
+  "permissions": [
+    "tabs",
+    "https://ajax.googleapis.com/",
+    "storage"
+  ],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

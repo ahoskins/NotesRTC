@@ -1,0 +1,7 @@
+{
+  "name": "chrome-notes",
+  "dependencies": {
+    "react": "^0.13.2",
+    "reactify": "^1.1.0"
+  }
+}
