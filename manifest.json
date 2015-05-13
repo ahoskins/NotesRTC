@@ -26,7 +26,8 @@
     "tabs",
     "https://ajax.googleapis.com/",
     "storage",
-    "app"
+    "app",
+    "windows"
   ],
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
