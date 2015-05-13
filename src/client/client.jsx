@@ -20,6 +20,10 @@ var Compose = React.createClass({
 		});
 	},
 
+	openPop: function() {
+		chrome.windows.create({'url': 'redirect.html', 'type': 'popup'});
+	},
+
 	handleChange: function(e) {
 		console.log("handle change");
 		this.setState({text: e.target.value});
@@ -32,6 +36,7 @@ var Compose = React.createClass({
 				<h1>Compose note</h1>
 				<textarea value={value} onChange={this.handleChange}> </textarea>
 				<button onClick={this.handleSave}>Save</button>
+				<button onClick={this.openPop}>Pop</button>
 			</div>
 		)
 	}

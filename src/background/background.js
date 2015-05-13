@@ -7,9 +7,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	});
 });
 
-chrome.commands.onCommand.addListener(function(command) {
-	if (command === 'new-note') {
-		console.log('new note requested');
-		// Tell the React front-end to do something
-	}
-});
+// chrome.commands.onCommand.addListener(function(command) {
+// 	if (command === 'new-note') {
+// 		console.log('new note requested');
+// 		// Tell the React front-end to do something
+// 	}
+// });

@@ -21,6 +21,10 @@ var Compose = React.createClass({displayName: "Compose",
 		});
 	},
 
+	openPop: function() {
+		chrome.windows.create({'url': 'redirect.html', 'type': 'popup'});
+	},
+
 	handleChange: function(e) {
 		console.log("handle change");
 		this.setState({text: e.target.value});
@@ -32,7 +36,8 @@ var Compose = React.createClass({displayName: "Compose",
 			React.createElement("div", null, 
 				React.createElement("h1", null, "Compose note"), 
 				React.createElement("textarea", {value: value, onChange: this.handleChange}, " "), 
-				React.createElement("button", {onClick: this.handleSave}, "Save")
+				React.createElement("button", {onClick: this.handleSave}, "Save"), 
+				React.createElement("button", {onClick: this.openPop}, "Pop")
 			)
 		)
 	}

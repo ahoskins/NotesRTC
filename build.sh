@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-browserify -t reactify viewer.jsx > build/viewer.bundle.js
+browserify -o build/background-bundle.js src/background/background.js
+browserify -t reactify -o build/client-bundle.js src/client/client.jsx
