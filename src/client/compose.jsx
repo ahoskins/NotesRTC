@@ -1,4 +1,4 @@
-var Compose = React.createClass({
+module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			text: ''
@@ -6,7 +6,7 @@ var Compose = React.createClass({
 	},
 
 	componentDidMount: function() {
-
+		console.dir(chrome.extension.getBackgroundPage());
 	},
 
 	handleSave: function() {
@@ -18,10 +18,6 @@ var Compose = React.createClass({
 				console.log(value);
 			});
 		});
-	},
-
-	openPop: function() {
-		chrome.windows.create({'url': 'redirect.html', 'type': 'popup'});
 	},
 
 	handleChange: function(e) {
@@ -36,13 +32,7 @@ var Compose = React.createClass({
 				<h1>Compose note</h1>
 				<textarea value={value} onChange={this.handleChange}> </textarea>
 				<button onClick={this.handleSave}>Save</button>
-				<button onClick={this.openPop}>Pop</button>
 			</div>
 		)
 	}
 });
-
-React.render(
-	<Compose />,
-	document.getElementById('content')
-);
