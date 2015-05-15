@@ -1,11 +1,13 @@
 {
   "name": "chrome-notes",
   "dependencies": {
+    "exorcist": "^0.4.0",
     "react": "^0.13.2",
     "reactify": "^1.1.0"
   },
+
   "scripts": {
-  	"build": "browserify -o build/background-bundle.js src/background/background.js & browserify -t reactify -o build/client-bundle.js src/client/controller.jsx",
-	"watch": "watchify -v -o build/background-bundle.js src/background/background.js & watchify -v -t reactify -o build/client-bundle.js src/client/controller.jsx"
+  	"build": "browserify src/background/background.js --debug | exorcist build/background-bundle.js.map > build/background-bundle.js & browserify -t reactify src/client/controller.jsx --debug | exorcist build/client-bundle.js.map > build/client-bundle.js",
+    "watch": "watchify src/background/background.js -o build/background-bundle.js --debug | exorcist build/background-bundle.js.map & watchify -t reactify src/client/controller.jsx -o build/client-bundle.js --debug | exorcist build/client-bundle.js.map"
   }
 }

@@ -1,3 +1,9 @@
+**notes!**:
+- source maps are frustrating because chrome caches network requests so aggresively
+- keep the background script debug tab open, then it won't cache
+- the only way to force a network refetch for the client seems to be cmd+shift+r while the network tab is opened
+
+
 a-chrome-plugin-with-no-name
 ===================================
 
