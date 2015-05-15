@@ -3,5 +3,9 @@
   "dependencies": {
     "react": "^0.13.2",
     "reactify": "^1.1.0"
+  },
+  "scripts": {
+  	"build": "browserify -o build/background-bundle.js src/background/background.js & browserify -t reactify -o build/client-bundle.js src/client/controller.jsx",
+	"watch": "watchify -v -o build/background-bundle.js src/background/background.js & watchify -v -t reactify -o build/client-bundle.js src/client/controller.jsx"
   }
 }
