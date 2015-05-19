@@ -4,3 +4,5 @@ node_modules/
 /build/client-bundle.js
 /build/background-bundle.js.map
 /build/client-bundle.js.map
+
+*.txt
