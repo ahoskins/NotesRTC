@@ -2,17 +2,20 @@
  Shown when the omnibar icon is clicked because the
  "browser_action" field in manifest.json contains
  the "default_popup" key with value "popup.html"
- -->
+-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CHROME APP</title>
-    <script src="../node_modules/react/dist/react.js"></script>
-    <script src="../node_modules/react/dist/JSXTransformer.js"></script>
-  </head>
-  <body>
-    <div id="content"></div>
-    <script src="client-bundle.js"></script>
-  </body>
+<head>
+  <title>CHROME APP</title>    
+  <link rel="stylesheet" type="text/css" href="../bower_components/skeleton/css/skeleton.css" />
+</head>
+<body>
+  <div id="content"></div>
+
+  <script src="../node_modules/react/dist/react.js"></script>
+  <script src="../node_modules/react/dist/JSXTransformer.js"></script>
+
+  <script src="client-bundle.js"></script>
+</body>
 </html>
 

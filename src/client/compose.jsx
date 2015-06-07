@@ -1,37 +1,54 @@
+var styles = {
+	compose: {
+		width: 300
+	}
+}
+
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			text: ''
+			text: '',
+			url: chrome.extension.getBackgroundPage().url
 		}
 	},
 
+	/*
+	Check if the currently active URL in the main chrome window has notes in storage
+	*/
 	componentDidMount: function() {
-		console.dir(chrome.extension.getBackgroundPage());
-	},
-
-	handleSave: function() {
-		console.log("ahhh it worked");
-		var obj = {};
-		obj['url_val'] = this.state.text;
-		chrome.storage.sync.set(obj, function() {
-			chrome.storage.sync.get('url_val', function(value) {
-				console.log(value);
-			});
+		var self = this;
+		chrome.storage.sync.get(this.state.url, function(val) {
+			if (Object.keys(val).length === 0) {
+				// not in storage --> show blank textarea
+				console.dir('not in storage');
+			} else {
+				// in storage --> show saved note
+				console.dir('in storage!');
+				console.dir(val);
+				self.setState({text: val[self.state.url]});
+			}
 		});
 	},
 
+	/*
+	Save the new textarea value to state variable and update in chrome.storage.sync
+	*/
 	handleChange: function(e) {
-		console.log("handle change");
-		this.setState({text: e.target.value});
+		var self = this;
+		this.setState({text: e.target.value}, function() {
+			var obj = {};
+			var key = self.state.url;
+			obj[key] = self.state.text;
+			chrome.storage.sync.set(obj);
+		});
 	},
 
 	render: function() {
 		var value = this.state.text;
 		return (
 			<div>
-				<h1>Compose note</h1>
-				<textarea value={value} onChange={this.handleChange}> </textarea>
-				<button onClick={this.handleSave}>Save</button>
+				<label for="compose">Thoughts:</label>
+				<textarea style={styles.compose} value={value} onChange={this.handleChange} id="compose" />
 			</div>
 		)
 	}

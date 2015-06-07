@@ -1,4 +1,5 @@
 node_modules/
+bower_components/
 
 /build/background-bundle.js
 /build/client-bundle.js
