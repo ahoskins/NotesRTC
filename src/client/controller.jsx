@@ -1,3 +1,3 @@
-var Base = require('./base.jsx');
+var Search = require('./search.jsx');
 
-React.render(<Base />, document.getElementById('content'));
+React.render(<Search />, document.getElementById('content'));

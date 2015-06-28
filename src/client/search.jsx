@@ -1,4 +1,5 @@
 var Results = require('./results.jsx');
+var Compose = require('./compose.jsx');
 
 var styles = {
 	search: {
@@ -10,7 +11,8 @@ module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			saved: {},
-			trimmed: []
+			trimmed: [],
+			query: ''
 		}
 	},
 
@@ -30,15 +32,14 @@ module.exports = React.createClass({
 
 	handleChange: function(e) {
 		var fuseHandle,
-			query,
 			results;
 
 		fuseHandle = new Fuse(this.state.saved, {
 			keys: ['url', 'note'],
 			includeScore: true
 		});
-		query = e.target.value;
-		results = _.chain(fuseHandle.search(query))
+
+		results = _.chain(fuseHandle.search(e.target.value))
 				  .sortBy(function(result) {
 				  	return result.score;
 				  })
@@ -46,18 +47,24 @@ module.exports = React.createClass({
 				  .value()
 				  .slice(0,5);
 
-		this.setState({trimmed: results});
+		this.setState({trimmed: results, query: e.target.value});
 		console.dir(results);
 	},
 
 	render: function() {
+		var body;
+		if (this.state.query === '') {
+			body = <Compose />;
+		} else {
+			body = <Results results={this.state.trimmed} />;
+		}
 		return (
 			<div>
 			<form>
 				<label for="search">Search:</label>
 				<input style={styles.search} onChange={this.handleChange} type="email" placeholder="angular scope, closures" id="search" />
 			</form>
-			<Results results={this.state.trimmed} />
+			{body}
 			</div>
 		)
 	}
