@@ -1,6 +1,9 @@
 var styles = {
 	compose: {
 		width: 300
+	},
+	labelPadding: {
+		padding: '5px 0px'
 	}
 }
 
@@ -47,8 +50,8 @@ module.exports = React.createClass({
 		var value = this.state.text;
 		return (
 			<div>
-				<label for="compose">Thoughts:</label>
-				<textarea style={styles.compose} value={value} onChange={this.handleChange} id="compose" />
+				<div style={styles.labelPadding}>Current Notes:</div>
+				<textarea style={styles.compose} value={value} onChange={this.handleChange} />
 			</div>
 		)
 	}

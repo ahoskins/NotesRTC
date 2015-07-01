@@ -1,6 +1,5 @@
 var styles = {
 	url: {
-		fontSize: 18,
 		fontWeight: 'bold'
 	},
 
@@ -8,6 +7,9 @@ var styles = {
 		borderBottom: 1,
 		borderBottomStyle: 'solid',
 		borderBottomColor: 'black'
+	},
+	outerPadding: {
+		paddingTop: 5
 	}
 }
 
@@ -15,7 +17,7 @@ module.exports = React.createClass({
 	render: function() {
 		var length = this.props.results.length;
 		return (
-			<div>
+			<div style={styles.outerPadding}>
 				{this.props.results.map(function(result, i) {
 					return (
 						<div style={i === length - 1 ? {} : styles.box} key={result.url}>

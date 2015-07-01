@@ -4,8 +4,43 @@ var Compose = require('./compose.jsx');
 var styles = {
 	search: {
 		width: 300
+	},
+	spacer: {
+		position: 'absolute',
+		left: 0,
+		width: '100%'
+	},
+	topSpacer: {
+		backgroundColor: '#64B5F6',
+		top: 0,
+		height: '0.7em'
+	},
+	middleSpace: {
+		backgroundColor: '#455A64',
+		height: '0.2em'
+	},
+	labelPadding: {
+		padding: '5px 0px'
+	},
+	clearButton: {
+		marginLeft: 5,
+		paddingLeft: 5,
+		paddingRight: 5,
 	}
 };
+
+function m() {
+	var result = {};
+	for (var i = 0; i < arguments.length; i++) {
+		if (arguments[i]) {
+			for (k in arguments[i]) {
+				result[k] = arguments[i][k];
+			}
+		}
+	}
+	console.dir(result);
+	return result;
+}
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -51,6 +86,10 @@ module.exports = React.createClass({
 		console.dir(results);
 	},
 
+	handleClear: function() {
+		this.setState({query: '', trimmed: []});
+	},
+
 	render: function() {
 		var body;
 		if (this.state.query === '') {
@@ -60,11 +99,12 @@ module.exports = React.createClass({
 		}
 		return (
 			<div>
-			<form>
-				<label for="search">Search:</label>
-				<input style={styles.search} onChange={this.handleChange} type="email" placeholder="angular scope, closures" id="search" />
-			</form>
-			{body}
+				<div style={m(styles.topSpacer, styles.spacer)} />
+				<div style={styles.labelPadding}>Search:</div>
+				<input style={styles.search} onChange={this.handleChange} value={this.state.query} type="email" placeholder="angular scope, closures" />
+				<button style={styles.clearButton} onClick={this.handleClear}>clear</button>
+				<div style={m(styles.middleSpace, styles.spacer)} />
+				{body}
 			</div>
 		)
 	}
