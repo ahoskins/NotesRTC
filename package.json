@@ -4,7 +4,8 @@
     "exorcist": "^0.4.0",
     "fuse.js": "^1.2.2",
     "react": "^0.13.2",
-    "reactify": "^1.1.0"
+    "reactify": "^1.1.0",
+    "underscore": "^1.8.3"
   },
   "scripts": {
     "build": "browserify src/background/background.js --debug | exorcist build/background-bundle.js.map > build/background-bundle.js & browserify -t reactify src/client/controller.jsx --debug | exorcist build/client-bundle.js.map > build/client-bundle.js",
