@@ -1,6 +1,7 @@
 var windowManager = require('./window-manager')(chrome);
 
 window.url = null;
+window.activeWindow = null;
 
 var POP_UP_WIDTH = 600;
 var PADDING_TOP = 50;
@@ -13,6 +14,7 @@ chrome.commands.onCommand.addListener(function(command) {
 		     // only one tab should be active and in the current window at once
 		     var activeTab = arrayOfTabs[0];
 		     url = arrayOfTabs[0].url;
+		     activeWindow = arrayOfTabs[0].windowId;
 		     
 		     chrome.windows.getCurrent(function(win) {
 				var left = win.left + Math.round((win.width - POP_UP_WIDTH) / 2);

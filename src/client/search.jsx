@@ -47,7 +47,8 @@ module.exports = React.createClass({
 		return {
 			saved: {},
 			trimmed: [],
-			query: ''
+			query: '',
+			activeWindow: chrome.extension.getBackgroundPage().activeWindow
 		}
 	},
 
@@ -95,7 +96,7 @@ module.exports = React.createClass({
 		if (this.state.query === '') {
 			body = <Compose />;
 		} else {
-			body = <Results results={this.state.trimmed} />;
+			body = <Results results={this.state.trimmed} activeWindow={this.state.activeWindow} />;
 		}
 		return (
 			<div>
