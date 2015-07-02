@@ -1,5 +1,6 @@
 var Results = require('./results.jsx');
 var Compose = require('./compose.jsx');
+var utils = require('./utils.js');
 
 var styles = {
 	search: {
@@ -28,19 +29,6 @@ var styles = {
 		paddingRight: 5,
 	}
 };
-
-function m() {
-	var result = {};
-	for (var i = 0; i < arguments.length; i++) {
-		if (arguments[i]) {
-			for (k in arguments[i]) {
-				result[k] = arguments[i][k];
-			}
-		}
-	}
-	console.dir(result);
-	return result;
-}
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -100,11 +88,11 @@ module.exports = React.createClass({
 		}
 		return (
 			<div>
-				<div style={m(styles.topSpacer, styles.spacer)} />
+				<div style={utils.m(styles.topSpacer, styles.spacer)} />
 				<div style={styles.labelPadding}>Search:</div>
 				<input style={styles.search} onChange={this.handleChange} value={this.state.query} type="email" placeholder="angular scope, closures" />
 				<button style={styles.clearButton} onClick={this.handleClear}>clear</button>
-				<div style={m(styles.middleSpace, styles.spacer)} />
+				<div style={utils.m(styles.middleSpace, styles.spacer)} />
 				{body}
 			</div>
 		)

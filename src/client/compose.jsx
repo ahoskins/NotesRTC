@@ -1,17 +1,33 @@
+var TextOptions = require('./text-options.jsx');
+
 var styles = {
-	compose: {
-		width: 300
+	composeArea: {
+		padding: '0% 20%'
 	},
 	labelPadding: {
 		padding: '5px 0px'
 	}
 }
 
+function getParentNodes(element) {
+	var nodeNames = {};
+	while (element.parentNode) {
+		nodeNames[element.nodeName] = true;
+		element = element.parentNode;
+	}
+	return nodeNames;
+}
+
+function hasNode(nodeList, name) {
+	return nodeList[name];
+}
+
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			text: '',
-			url: chrome.extension.getBackgroundPage().url
+			url: chrome.extension.getBackgroundPage().url,
+			textOptions: {bold: false, italic: false, posLeft: -999, posTop: -999}
 		}
 	},
 
@@ -28,30 +44,68 @@ module.exports = React.createClass({
 				// in storage --> show saved note
 				console.dir('in storage!');
 				console.dir(val);
-				self.setState({text: val[self.state.url]});
+				// self.setState({text: val[self.state.url]});
+				var articleEl = React.findDOMNode(self.refs.content);
+				articleEl.innerHTML = val[self.state.url];
 			}
 		});
+
+		this.setupEventBindings();
 	},
 
-	/*
-	Save the new textarea value to state variable and update in chrome.storage.sync
-	*/
-	handleChange: function(e) {
-		var self = this;
-		this.setState({text: e.target.value}, function() {
-			var obj = {};
-			var key = self.state.url;
-			obj[key] = self.state.text;
-			chrome.storage.sync.set(obj);
-		});
+	setupEventBindings: function() {
+		document.onmouseup = this.checkTextHighlighting;
+		document.onkeyup = this.saveContent;
+	},
+
+	checkTextHighlighting: function(e) {
+		console.log('text highlighted');
+		var selection = window.getSelection();
+		if (selection.isCollapsed) {
+			this.setState({textOptions: {
+				bold: false,
+				italic: false,
+				posLeft: -999,
+				posTop: -999
+			}});
+		} else {
+			nodeList = getParentNodes(selection.focusNode);
+			if (hasNode(nodeList, 'ARTICLE')) {
+				// Update state which is passed as props to text-options component
+				var b = selection.getRangeAt(0).getBoundingClientRect();
+				this.setState({textOptions: {
+					bold: hasNode(nodeList, 'B'),
+					italic: hasNode(nodeList, 'I'),
+					posLeft: (b.left + b.right) / 2,
+					posTop: b.top - 5 + window.pageYOffset
+				}});
+			}
+		}
+	},
+
+	saveContent: function() {
+		var articleEl = React.findDOMNode(this.refs.content);
+		if (articleEl === null) return;
+
+		var obj = {};
+		var key = this.state.url;
+		obj[key] = articleEl.innerHTML;
+		chrome.storage.sync.set(obj);
+	},
+
+	componentWillUnmount: function() {
+		document.onmouseup = null;
+		document.onkeyup = null;
 	},
 
 	render: function() {
-		var value = this.state.text;
 		return (
-			<div>
+			<div style={styles.composeArea}>
 				<div style={styles.labelPadding}>Current Notes:</div>
-				<textarea style={styles.compose} value={value} onChange={this.handleChange} />
+				<article contentEditable="true" ref="content">
+					<span>start here...</span>
+				</article>
+				<TextOptions orientation={this.state.textOptions} styleToggled={this.saveContent} />
 			</div>
 		)
 	}
