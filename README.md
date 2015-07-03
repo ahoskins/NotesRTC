@@ -30,6 +30,7 @@ But for now, the UI for this project will be a pop-up window.  This is not neces
 How to run it locally:
 ============================
 1. clone it
+2. install dependencies with $ npm install
 2. build it (and subsequently watch it) with $ npm run watch
 3. go into chrome extensions tab and click 'load unpacked extension'
 4. choose the root directory of the cloned repo and click ok 
