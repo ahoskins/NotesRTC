@@ -1,17 +1,36 @@
 var utils = require('./utils.js');
+var Radium = require('../../node_modules/radium/dist/radium.js');
 
 var styles = {
 	box: {
-		padding: 5,
-		border: '1px solid black',
-		borderRadius: 2
+		padding: 3,
+		borderRadius: 8,
+		display: 'flex',
+		flexDirection: 'row',
+		backgroundColor: 'rgba(0,0,0,0.9)'
+	},
+	button: {
+		padding: '0px 10px',
+		borderRadius: 5,
+		fontSize: '2.0em',
+		margin: 3,
+		width: '50%',
+		textDecoration: 'none',
+		textAlign: 'center',
+		':hover': {
+			color: 'white'
+		}
 	}
 };
 
+// make the button background pressed looking
 function getBoldStyle(props) {
 	var s = {};
 	if (props.orientation.bold) {
-		s.textWeight = 'bold';
+		s.color = 'white';
+		s.backgroundColor = 'grey';
+	} else {
+		s.color = 'grey';
 	}
 	return s;
 }
@@ -19,7 +38,10 @@ function getBoldStyle(props) {
 function getItalicStyle(props) {
 	var s = {};
 	if (props.orientation.italic) {
-		s.textWeight = 'bold';
+		s.color = 'white';
+		s.backgroundColor = 'grey';
+	} else {
+		s.color ='grey';
 	}
 	return s;
 }
@@ -36,7 +58,7 @@ function getPosition(props, domRef) {
 	}
 }
 
-module.exports = React.createClass({
+module.exports = Radium(React.createClass({
 	getInitialState: function() {
 		return {
 			boldStyle: {},
@@ -70,9 +92,9 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div style={utils.m(styles.box, this.state.position)} ref="box">
-				<button style={this.state.boldStyle} onClick={this.boldClick}>b</button>
-				<button style={this.state.italicStyle} onClick={this.italicClick}>i</button>
+				<a href="#" style={utils.m(styles.button, this.state.boldStyle)} onClick={this.boldClick} key="bold">b</a>
+				<a href="#" style={utils.m(styles.button, this.state.italicStyle)} onClick={this.italicClick} key="italic">i</a>
 			</div>
 		)
 	}
-});
+}));

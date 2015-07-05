@@ -93,6 +93,11 @@ module.exports = React.createClass({
 		chrome.storage.sync.set(obj);
 	},
 
+	textOptionsToggled: function() {
+		this.saveContent();
+		this.checkTextHighlighting();
+	},
+
 	componentWillUnmount: function() {
 		document.onmouseup = null;
 		document.onkeyup = null;
@@ -105,7 +110,7 @@ module.exports = React.createClass({
 				<article contentEditable="true" ref="content">
 					<span>start here...</span>
 				</article>
-				<TextOptions orientation={this.state.textOptions} styleToggled={this.saveContent} />
+				<TextOptions orientation={this.state.textOptions} styleToggled={this.textOptionsToggled} />
 			</div>
 		)
 	}
