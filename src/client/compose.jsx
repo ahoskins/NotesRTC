@@ -54,7 +54,12 @@ module.exports = React.createClass({
 	},
 
 	setupEventBindings: function() {
-		document.onmouseup = this.checkTextHighlighting;
+		var self = this;
+		document.onmouseup = function(e) {
+			setTimeout(function(e) {
+				self.checkTextHighlighting(e);
+			}, 1);
+		}
 		document.onkeyup = this.saveContent;
 	},
 
