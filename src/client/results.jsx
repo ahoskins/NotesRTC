@@ -31,9 +31,7 @@ module.exports = React.createClass({
 								{result.url}
 							</a>
 							<br />
-							<span>
-								{result.note}
-							</span>
+							<span dangerouslySetInnerHTML={{'__html': result.note}} />
 						</div>
 					);
 				})}
