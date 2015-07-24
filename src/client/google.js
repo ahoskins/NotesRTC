@@ -1,7 +1,6 @@
 module.exports = function() {
 	return {
 		getToken: function() {
-			console.dir('first');
 			var deferred = Q.defer();
 			chrome.identity.getAuthToken({ 'interactive': true }, function(t) {
 				deferred.resolve(t);
@@ -10,7 +9,6 @@ module.exports = function() {
 		},
 
 		getContacts: function(token) {
-			console.dir('second');
 			var deferred = Q.defer();
 
 			var xhr = new XMLHttpRequest();
