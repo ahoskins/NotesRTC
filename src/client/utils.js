@@ -14,7 +14,6 @@ module.exports = {
 				}
 			}
 		}
-		console.dir(result);
 		return result;	
 	}
 }
