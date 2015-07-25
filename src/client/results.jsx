@@ -24,7 +24,8 @@ var styles = {
 	halfRight: {
 		width: '50%',
 		float: 'right',
-		overflow: 'hidden'
+		overflow: 'hidden',
+		paddingLeft: 5
 	},
 	full: {
 		width: '100%',
