@@ -26,14 +26,12 @@ module.exports = React.createClass({
 				emails.push(grandchildren[j].attributes.getNamedItem('address').nodeValue);
 			}
 		}
-		this.setState({contacts: emails}, function() {
-			console.dir(this.state.contacts);
-		});
+		this.setState({contacts: emails});
 	},
 
  	render: function() {
 		return (
-			<Search />
+			<Search contacts={this.state.contacts}/>
 		)
 	}
 });
