@@ -54,12 +54,12 @@ module.exports = React.createClass({
 		var body = null;
 		if (this.state.shareShown) {
 			body =  <div style={styles.halfRight}>
-						<Contacts contacts={self.props.contacts}/>
+						<Contacts contacts={this.props.contacts} peer={this.props.peer}/>
 					</div>
 		}
 		return (
 			<div style={styles.outerPadding}>
-				<div style={self.state.shareShown ? styles.halfLeft : styles.full}>
+				<div style={this.state.shareShown ? styles.halfLeft : styles.full}>
 					{this.props.results.map(function(result, i) {
 						return (
 							<div style={i === length - 1 ? {} : styles.box} key={result.url}>

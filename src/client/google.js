@@ -21,6 +21,14 @@ module.exports = function() {
 			};
 
 			return deferred.promise;
+		},
+
+		getEmail: function() {
+			var deferred = Q.defer();
+			chrome.identity.getProfileUserInfo(function(userInfo) {
+				deferred.resolve(userInfo.email);
+			});
+			return deferred.promise;
 		}
 	}
 }

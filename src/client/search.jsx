@@ -84,7 +84,7 @@ module.exports = React.createClass({
 		if (this.state.query === '') {
 			body = <Compose />;
 		} else {
-			body = <Results results={this.state.trimmed} activeWindow={this.state.activeWindow} contacts={this.props.contacts}/>;
+			body = <Results results={this.state.trimmed} activeWindow={this.state.activeWindow} contacts={this.props.contacts} peer={this.props.peer}/>;
 		}
 		return (
 			<div>

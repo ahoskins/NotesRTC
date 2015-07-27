@@ -29,7 +29,8 @@
     "app",
     "windows",
     "background",
-    "identity"
+    "identity",
+    "identity.email"
   ],
 
   "oauth2": {

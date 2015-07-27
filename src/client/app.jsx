@@ -1,15 +1,18 @@
 var Search = require('./search.jsx');
 var g = require('./google.js')();
+var utils = require('./utils.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			contacts: []
+			contacts: [],
+			peer: null
 		}
 	},
 
 	componentDidMount: function() {
 		g.getToken().then(g.getContacts).then(this.processContacts);
+		g.getEmail().then(this.processEmail);
 	},
 
 	processContacts: function(raw) {
@@ -29,9 +32,15 @@ module.exports = React.createClass({
 		this.setState({contacts: emails});
 	},
 
+	processEmail: function(email) {
+		var hashCode = utils.hashCode(email).toString();
+		var p = new Peer(hashCode, {host: 'chrome-notes-server.herokuapp.com', port: 80});
+		this.setState({peer: p});
+	},
+
  	render: function() {
 		return (
-			<Search contacts={this.state.contacts}/>
+			<Search contacts={this.state.contacts} peer={this.state.peer}/>
 		)
 	}
 });
