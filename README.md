@@ -5,6 +5,8 @@ The first part in the [two part](https://github.com/ahoskins/chrome-annotate) We
 
 chrome-notes is a way to tie notes/thoughts/ideas to a specific URL.  It's not annotations, it's notes complete with a medium-style editor (bold, italic, underline) -- real in-page annotations are part two.
 
+It's still in development, but a demo is available by following the instructions below.
+
 How to run it locally:
 ============================
 1. clone it
